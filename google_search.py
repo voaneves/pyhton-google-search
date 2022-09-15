@@ -11,7 +11,7 @@
 
 TO DO
 ----------
-    - Improve ammount of results
+    - Improve quality of results (titles, description, etc)
     - Implement saving to formatted external file
     - build requirements.txt file
     - improve the README.md
