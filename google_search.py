@@ -1,29 +1,48 @@
-from selenium.webdriver import Chrome
-import sys
-  
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""google_search: search the 10 first results of a Google Search.
+----------
+    
+    To do a google_search, you just have to execute this file, followed by the 
+    search string as an argument.
+        $ python google_search.py "string to be searched"
+    Remember to run requirements.txt first.
+
+TO DO
+----------
+    - Improve ammount of results
+    - Implement saving to formatted external file
+    - build requirements.txt file
+    - improve the README.md
+    - Publish to pip.
+"""
+
+import sys # to receive input
+try:
+    from googlesearch import search # try importing googlesearch
+except ImportError:
+    print("No module named 'google' found")
+
 # function to convert a list into string
 def convert(s): 
-    str1 = "" 
-    return(str1.join(s)) 
+    string = "" 
+    return(string.join(s)) 
         
 # Assign the arguments passed to a variable search_string
-search_string = sys.argv[1:] 
-  
+search_string = sys.argv[1:]
+
 # The argument passed to the program is accepted
 # as list, it is needed to convert that into string
 search_string = convert(search_string)
   
 # This is done to structure the string 
 # into search url.(This can be ignored)
-search_string = search_string.replace(' ', '+') 
-  
-  
-# Assigning the browser variable with chromedriver of Chrome.
-# Any other browser and its respective webdriver 
-# like geckodriver for Mozilla Firefox can be used
-browser = Chrome('chromedriver')
-  
-  
-for i in range(1):
-    matched_elements = browser.get("https://www.google.com/search?q=" + 
-                                   search_string + "&start=" + str(i))
+search_string = search_string.replace(' ', '+')
+
+# Create a results string which will hold the results
+results = []
+
+# Use Google Search module to search all the results
+for j in search(search_string, tld = "com", num = 10, stop = 10, pause = 2):
+    results.append(j)
